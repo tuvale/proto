@@ -1,10 +1,25 @@
-// Inkluderer biblioteker
+/*
+Arduino-basert pumpespill med motorisert vogn for læring om arbeid og energi
+
+Dette programmet styrer et fysisk spill der en spiller pumper for å bevege en vogn. Poeng registreres via reed switch-sensorer, og bevegelse, tid og visuelle effekter håndteres via motor, buzzer, LCD-display og LED-stripe.
+Programmet inkluderer blant annet funksjoner for automatisk tilbakestilling av vogn og visning av tidtaking av spillet.
+
+[Gruppe 5 / Bawan Ghorbani, Oskar Rise, Brage Berg, Tuva Enersen / TPD4126 Prototyping av fysiske brukeropplevelser / Vår 2025] 
+
+Brukte kodebiblioteker:
+<Arduino.h> og <Wire.h> - Standard Arduino-biblioteker for grunnleggende funksjonalitet
+<Adafruit_Neopixel.h> - Av Adafruit Industries. Brukes til kontroll av LED-stripe. Lisens: MIT-Lisens. Kilde: https://github.com/adafruit/Adafruit_NeoPixel
+<LiquidCrystal_I2C.h> - Av John Rickman. Brukes til I2C-kommunikasjon med LCD-display. Kilde: https://github.com/johnrickman/LiquidCrystal_I2C
+Bibliotekene er brukt i henhold til deres respektive lisenser.
+*/
+
+// Inkluderer biblioteker:
 #include <Arduino.h> // Hovedbiblioteket for Arduino
 #include <Wire.h> // For I2C-kommunikasjon (modul til LCD-displayet)
 #include <Adafruit_NeoPixel.h> // Kontrollere LED-stripe
 #include <LiquidCrystal_I2C.h> // Bruke LCD-display med I2C-modul
 
-// Definerer pinneverdier
+// Definerer pinneverdier:
 const int analogPin       = A0;
 const int motorPin1       = 5;
 const int motorPin2       = 6;
@@ -14,7 +29,7 @@ const int reedBane        = A1;
 const int buzzerPin       = 8;
 const int ledPin          = 10;
 
-// Konfigurerer LED-stripen
+// Konfigurerer LED-stripen:
 #define LED_PIN    3 // Definerer pinneverdi
 #define NUMPIXELS  47 // Det er 47 LED-piksler på stripen
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, LED_PIN, NEO_GRB + NEO_KHZ800); // Oppretter et objekt kalt pixels som representerer LED-stripen
